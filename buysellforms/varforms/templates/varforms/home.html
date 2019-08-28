@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+	<button class="tablink" onclick="openPage('Order', this, 'red')">Simple Order</button>
+	<button class="tablink" onclick="openPage('Purchase', this, 'green')" id="defaultOpen">Purchase Order</button>
+	<button class="tablink" onclick="openPage('Quotation', this, 'blue')">Quotation</button>
+	<button class="tablink" onclick="openPage('Invoice', this, 'orange')">Invoice</button>
+
+		<div id="Order" class="tabcontent">
+		  <h3>Simple Order</h3>
+
+		  {% if simpleorderform %}
+		  	<div class="simpleOrderForm">			
+				<form action="">
+				  <div class="form-group">
+				  	<div class="col-6">
+				  		{{ simpleorderform.uid.errors }}
+					    <label id="uidlabel" for="{{ simpleorderform.uid.uidlabel }}">UID:</label>
+					    <input type="text" class="form-control" id="uid">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="quantitylabel" for="{{ simpleorderform.quantity.quantitylabel }}">Quantity:</label>
+					    <input type="text" class="form-control" id="quantity">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="descriptionlabel" for="{{ simpleorderform.description.descriptionlabel }}">Description:</label>
+					    <input type="text" class="form-control" id="description">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="itemlabel" for="{{ simpleorderform.item.itemlabel }}">Item:</label>
+					    <input type="text" class="form-control" id="item">
+					</div>
+				  </div>
+				  <button type="submit" class="btn btn-default">Submit</button>
+				</form>
+		  	</div>
+		</div>
+		{% endif %}
+
+		{% if purchaseorderform %}
+		<div id="Purchase" class="tabcontent">
+		  <h3>Purchase Order</h3>
+			<div class="purchasForm">
+				<form action="">
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="uidlabel" for="{{ purchaseorderform.uid.uidlabel }}">UID:</label>
+					    <input type="text" class="form-control" id="uid">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="orderuidlabel" for="{{ purchaseorderform.orderuid.orderuidlabel }}">Order UID:</label>
+					    <input type="text" class="form-control" id="orderuid">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="quantitylabel" for="{{ purchaseorderform.quantity.quantitylabel }}">Quantity:</label>
+					    <input type="text" class="form-control" id="quantity">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="costlabel" for="{{ purchaseorderform.cost.costlabel }}">Cost:</label>
+					    <input type="text" class="form-control" id="cost">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="purchasetimelabel" for="{{ purchaseorderform.purchasetime.purchasetimelabel }}">Time of Purchase:</label>
+					    <input type="text" class="form-control" id="purchasetime">
+					</div>
+				  </div>
+				  <div class="form-group">
+				  	<div class="col-6">
+					    <label id="deliverytimelabel" for="{{ purchaseorderform.deliverytime.deliverytimelabel }}">Time for delivery:</label>
+					    <input type="text" class="form-control" id="deliverytime">
+					</div>
+				  </div>
+
+				  <button type="submit" class="btn btn-default">Submit</button>
+				</form>
+		  	</div>
+		</div>
+		{% endif %}
+
+		{% if quotationform %}
+		<div id="Quotation" class="tabcontent">
+		  <h3>Quotation</h3>  
+		  	<div class="quotationForm">	
+				<form action="">
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="uidlabel" for="{{ quotationform.uid.uidlabel }}">UID:</label>
+						    <input type="text" class="form-control" id="uid">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="orderuidlabel" for="{{ quotationform.orderuid.orderuidlabel }}">Order UID:</label>
+						    <input type="text" class="form-control" id="orderuid">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="quantitylabel" for="{{ quotationform.quantity.quantitylabel }}">Quantity:</label>
+						    <input type="text" class="form-control" id="quantity">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="costlabel" for="{{ quotationform.cost.costlabel }}">Cost:</label>
+						    <input type="text" class="form-control" id="cost">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="sellerlabel" for="{{ quotationform.seller.sellerlabel }}">Seller:</label>
+						    <input type="text" class="form-control" id="seller">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="deliverytimelabel" for="{{ quotationform.deliverytime.deliverytimelabel }}">Time for delivery:</label>
+						    <input type="text" class="form-control" id="deliverytime">
+						</div>
+					  </div>
+				  <button type="submit" class="btn btn-default">Submit</button>
+				</form>
+		  	</div>
+		</div>
+		{% endif %}
+
+		{% if invoiceform %}
+		<div id="Invoice" class="tabcontent">
+		  <h3>Invoice</h3> 
+		 	<div class="invoiceForm">		
+				<form action="">
+					  <div class="form-group">
+					  	<div class="col-6">
+					    <label id="uidlabel" for="{{ invoiceform.uid.uidlabel }}">UID:</label>
+					    	<input type="text" class="form-control" id="uid">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="buyerlabel" for="{{ invoiceform.buyer.buyerlabel }}">Buyer:</label>
+						    <input type="text" class="form-control" id="buyer">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="sellerlabel" for="{{ invoiceform.seller.sellerlabel }}">Seller:</label>
+						    <input type="text" class="form-control" id="seller">
+						</div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-6">
+						    <label id="amountlabel" for="{{ invoiceform.amount.amountlabel }}">Final Amount:</label>
+						    <input type="text" class="form-control" id="amount">
+					   	</div>
+					  </div>
+				  <button type="submit" class="btn btn-default">Submit</button>
+				</form>
+		 	</div>
+		</div>
+		{% endif %}
+
+</body>
+</html>
